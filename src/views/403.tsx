@@ -1,10 +1,10 @@
-import { Result, Button } from "antd"
-import { useNavigate } from "react-router-dom"
+import { Result, Button } from 'antd'
+import { useNavigate } from 'react-router-dom'
 
 const NotFound = () => {
   const navigate = useNavigate()
   const handleClick = () => {
-    navigate("/")
+    navigate('/')
   }
   return (
     <Result

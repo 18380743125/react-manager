@@ -3,6 +3,7 @@ module.exports = {
   useTabs: false,
   tabWidh: 2,
   semi: false,
+  singleQuote: true,
   jsxSingleQuote: true,
   bracketSpacing: true,
   arrowParens: "avoid",

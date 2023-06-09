@@ -1,28 +1,32 @@
-import { RouteObject, createHashRouter, Navigate } from "react-router-dom"
-import Login from "@/views/Login"
-import Welcome from "@/views/Welcome"
-import Error404 from "@/views/404"
-import Error403 from "@/views/403"
+import { RouteObject, createHashRouter, Navigate } from 'react-router-dom'
+import Login from '@/views/login/Login'
+import Welcome from '@/views/Welcome'
+import Error404 from '@/views/404'
+import Error403 from '@/views/403'
 
 const routes: Array<RouteObject> = [
   {
-    path: "/",
+    path: '/',
+    element: <Navigate to='/welcome' />
+  },
+  {
+    path: '/welcome',
     element: <Welcome />
   },
   {
-    path: "/login",
+    path: '/login',
     element: <Login />
   },
   {
-    path: "*",
+    path: '*',
     element: <Navigate to='/404' />
   },
   {
-    path: "/404",
+    path: '/404',
     element: <Error404 />
   },
   {
-    path: "/403",
+    path: '/403',
     element: <Error403 />
   }
 ]
