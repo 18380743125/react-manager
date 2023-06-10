@@ -6,22 +6,22 @@ import api from '@/api'
 import { Login } from '@/types/api'
 import storage from '@/utils/storage'
 import { message } from '@/utils/AntdGlobal'
+import useStore from '@/store'
 
 import styles from './index.module.less'
 
 const LoginFC = () => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
-  // const updateToken = useStore(state => state.updateToken)
+  const updateToken = useStore(state => state.updateToken)
+
   const onFinish = async (values: Login.params) => {
     try {
       setLoading(true)
       const data = await api.login(values)
-      console.log(data)
-
       setLoading(false)
       storage.set('token', data)
-      // updateToken(data)
+      updateToken(data)
       message.success('登录成功')
       const params = new URLSearchParams(location.search)
       setTimeout(() => {

@@ -9,7 +9,10 @@ const instance = axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
   timeout: 8 * 1000,
   timeoutErrorMessage: '请求超时，请稍后再试',
-  withCredentials: true
+  withCredentials: true,
+  headers: {
+    icode: 'F8A188C322367EE8'
+  }
 })
 
 instance.interceptors.request.use(
@@ -17,8 +20,7 @@ instance.interceptors.request.use(
     if (config.showLoading) showLoading()
     const token = storage.get('token')
 
-    if (token) config.headers.Authorization = token
-    config.headers.icode = 'F8A188C322367EE8'
+    if (token) config.headers.Authorization = 'Bearer ' + token
     return {
       ...config
     }
@@ -35,8 +37,7 @@ instance.interceptors.response.use(response => {
   if (data.code === 500001) {
     message.error(data.msg)
     storage.remove('token')
-    // location.href = '/login'
-    console.log('去登录')
+    location.href = '/login'
     return Promise.reject(data)
   }
   if (data.code !== 0) {
@@ -54,9 +55,9 @@ interface IConfig {
 
 export default {
   get<T>(url: string, params?: object): Promise<T> {
-    return instance.get(url, { params })
+    return instance.get(url, { ...params })
   },
   post<T>(url: string, params?: object, options: IConfig = { showLoading: true, showError: true }): Promise<T> {
-    return instance.post(url, { params }, options)
+    return instance.post(url, { ...params }, options)
   }
 }
