@@ -1,3 +1,7 @@
+/**
+ * 封装 storage
+ */
+
 export default {
   /**
    * storage存储
@@ -14,7 +18,7 @@ export default {
    */
   get(key: string) {
     const value = localStorage.getItem(key)
-    if (!value) return ""
+    if (!value) return ''
     try {
       return JSON.parse(value)
     } catch (error) {

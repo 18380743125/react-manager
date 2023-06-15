@@ -1,6 +1,7 @@
 import { RouteObject, Navigate, createBrowserRouter } from 'react-router-dom'
 
 import Welcome from '@/views/welcome'
+import Dashboard from '@/views/dashboard'
 import Layout from '@/layout'
 import Login from '@/views/login/Login'
 import Error404 from '@/views/404'
@@ -17,6 +18,10 @@ const routes: Array<RouteObject> = [
       {
         path: '/welcome',
         element: <Welcome />
+      },
+      {
+        path: '/dashboard',
+        element: <Dashboard />
       }
     ]
   },

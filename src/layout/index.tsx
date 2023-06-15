@@ -13,7 +13,6 @@ const { Content, Sider } = Layout
 
 const App: React.FC = () => {
   const { updateUserInfo, collapsed, userInfo } = useStore()
-
   const getUserInfo = useCallback(async () => {
     const data = await api.getUserInfo()
     updateUserInfo(data)
@@ -30,12 +29,10 @@ const App: React.FC = () => {
         </Sider>
         <Layout>
           <NavHeader />
-          <Content className={styles['main']}>
-            <div className={styles['content']}>
-              <Outlet></Outlet>
-            </div>
-            <NavFooter />
+          <Content className={styles['content']}>
+            <Outlet></Outlet>
           </Content>
+          <NavFooter />
         </Layout>
       </Layout>
     </Watermark>

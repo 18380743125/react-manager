@@ -1,7 +1,8 @@
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
+import type { AxiosError } from 'axios'
 
-import { showLoading, hideLoading } from '@/utils/loading'
 import storage from './storage'
+import { showLoading, hideLoading } from '@/utils/loading'
 import { message } from '@/utils/AntdGlobal'
 import type { Result } from '@/types/api'
 
@@ -19,11 +20,8 @@ instance.interceptors.request.use(
   config => {
     if (config.showLoading) showLoading()
     const token = storage.get('token')
-
     if (token) config.headers.Authorization = 'Bearer ' + token
-    return {
-      ...config
-    }
+    return config
   },
   (err: AxiosError) => {
     hideLoading()
